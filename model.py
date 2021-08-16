@@ -29,7 +29,7 @@ df.drop(["surface"],axis=1,inplace=True)
 #plt.show()
 
 def calculate_density(value):
-    return (value["power"] * 5/value["speed"])
+    return (value["power"] * (5/value["speed"]))/ (2*3.14*((5**-6)**2))
 
 df["power_density"] = df.apply(calculate_density,axis=1)
 print(df.head())
@@ -78,7 +78,7 @@ brain.fit(X,y)
 
 y_predict = brain.predict(norm_future)
 future.insert(4,"predict",y_predict)
-#future.info()
+#print(future.head())
 
 def roun(value):
     if value == 0:
@@ -95,7 +95,8 @@ def roun(value):
         return "more"
 
 #future["predict"] = future["predict"].apply(roun)
-sns.pairplot(future,hue="power_density",
+print(future["power_density"])
+sns.pairplot(future[future["predict"]<2],hue="predict",
                     x_vars=["speed"],
                     y_vars=["power"])
 
