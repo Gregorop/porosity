@@ -9,6 +9,7 @@ df = pd.read_csv("porosity_1408.csv",index_col=False)
 df.drop(["id","red","total_pixels","porosity_pixels"],axis=1,inplace=True)
 df["% porosity"] = df["% porosity"]*100
 
+
 def set_result(value):
     if value > 2:
         return 0
