@@ -2,6 +2,7 @@ from neurobiba import Weights
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from random import randint
 
 df = pd.read_csv("porosity_1408.csv",index_col=False)
 df.drop(["id","red","total_pixels","porosity_pixels"],axis=1,inplace=True)
@@ -45,8 +46,8 @@ s = 1500
 while s<=3500:
     p = 150
     while p<=350:
-        speeds.append(s)
-        powers.append(p)
+        speeds.append(randint(1500,3500))
+        powers.append(randint(150,350))
         densitys.append(int((p * (5/s))/ (2*3.14*((5**-6)**2))))
         p+=2
     s+=10
