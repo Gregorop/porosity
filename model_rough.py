@@ -125,8 +125,9 @@ def final_porosity(value):
     else:
         return value["porosity_predict"]
 
-for i in addition_porosty:
-    df = df.append(i, ignore_index=True)
+#в pandas теперь так
+new_df = pd.DataFrame(addition_porosty)
+df = pd.concat([df, new_df], ignore_index=True)
 
 df["power_density"] = df.apply(calculate_power_density,axis=1)
 df["final_porosity"] = df.apply(final_porosity,axis=1)
@@ -351,10 +352,12 @@ for pair_n in range(len(df)):
     near_edge.obnulay()
     far_edge.obnulay()
 
-    new_df = new_df.append(data,ignore_index=True)
+    data = pd.DataFrame(data)
+    df = pd.concat([df, new_df], ignore_index=True)
+    #new_df = new_df.append(data,ignore_index=True)
 
 
-df = new_df
+#df = new_df
 #нагреваем частицы
 #передаем часть температуры
 #проверяем плавку

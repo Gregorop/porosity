@@ -33,11 +33,13 @@ df["power_density"] = df["power_density"].apply(density_normalizer)
 
 weights = Weights([3,5,1])
 
-for n in range(10000):
+for n in range(1000):
     for i in range(len(df["porosity"])):
         speed, power, density = df["speed"][i], df["power"][i], df["power_density"][i]
         output = df["porosity"][i]
         weights.train([speed, power,density], [output]) # train
+
+print('train прошелся')
 
 speeds = []
 powers = []
@@ -51,6 +53,8 @@ while s<=3500:
         densitys.append(int((p * (5/s))/ (2*3.14*((5**-6)**2))))
         p+=2
     s+=10
+
+print('while прошелся')
 
 future = {"speed": speeds,
             "power":powers,

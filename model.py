@@ -80,7 +80,7 @@ y_predict = brain.predict(norm_future)
 future.insert(4,"predict",y_predict)
 #print(future.head())
 
-def roun(value):
+def round(value):
     if value == 0:
         return "0"
     elif value < 0.5:
